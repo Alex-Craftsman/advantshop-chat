@@ -1,0 +1,45 @@
+﻿@{
+
+     ViewBag.Title = "Home Page";
+}
+
+
+<div data-ng-controller="homecontroller" class="container wrapper">
+    <div class="body-wrapper">
+        <div class="wrapper container text-center">
+            <div class="chat" ng-if="!reg">
+                <div class="chat-header">Добро пожаловать в чат!</div>
+                <div class="chat-body" id="chat">
+                    <div class="message" ng-repeat="m in messages">
+                        <span class="message-text">{{m}}</span>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <form class="chat-footer__form-send">
+                        <input class="chat-footer__input-send form-group" ng-model="message.text" type="text" placeholder="Введите сообщение">
+                        <input type="button" class="btn btn-success chat-footer__form-send" ng-click="sendmessage()" value="Отправить" />
+                    </form>
+                </div>
+            </div>
+            <div ng-if="reg" class="row reg">
+                <div class="col-md-12">
+                    <h3>Вход</h3>
+                    <div class="form-group">
+                        <label>Ваше имя: </label>
+                        <input class="form-control" type="text" ng-model="user.name" placeholder="Введите имя" value="" />
+                        <br />
+                        <input type="button" class="btn btn-success form-control" ng-click="adduser()" value="Войти" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/app/app.js"></script>
+}
